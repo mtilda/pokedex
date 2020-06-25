@@ -1,0 +1,9 @@
+.caught-pokemon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.caught-pokemon-container > * {
+    margin: 5px;
+}
