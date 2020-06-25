@@ -7,13 +7,13 @@ import CaughtPokemon from './Components/CaughtPokemon/CaughtPokemon'
 import './App.css';
 
 function App() {
-  const [allList, updateAllList] = useState([]);
+  const [allPokemonList, updateAllPokemonList] = useState([]);
   const [caughtPokemon, updateCaughtPokemon] = useState([]);
 
   const fetchPokemonData = async (name) => {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name?name:'?offset=0&limit=100/'}`);
     const json = await res.json();
-    if(!name) updateAllList(json.results);
+    if(!name) updateAllPokemonList(json.results);
     else return json;
   }
 
@@ -40,7 +40,7 @@ function App() {
         </nav>
       </header>
       <Switch>
-        <Route path='/all' render={() => <AllPokemon allList={allList} fetchPokemonData={fetchPokemonData} catchPokemon={catchPokemon} />} />
+        <Route path='/all' render={() => <AllPokemon allPokemonList={allPokemonList} fetchPokemonData={fetchPokemonData} catchPokemon={catchPokemon} />} />
         <Route path='/caught' render={() => <CaughtPokemon caughtPokemon={caughtPokemon} releasePokemon={releasePokemon} />} />
         <Route path='*' render={() => <Redirect to='/all' />} />
       </Switch>
